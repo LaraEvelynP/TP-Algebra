@@ -26,3 +26,20 @@ comparar (x:xs) (y:ys)
    | otherwise = False
 
 -----------------------------------------------------
+
+
+circuloPrimo :: Circulo -> Bool
+circuloPrimo [] = True
+circuloPrimo (x:y:xs) = esPrimo (x + y) && circuloPrimo xs
+
+esPrimo :: Integer -> Bool
+esPrimo n = sumaLista (divisoresHasta n n) == n+1
+
+sumaLista :: [Integer] -> Integer
+sumaLista [] = 0
+sumaLista (x:xs) = x + sumaLista xs
+
+divisoresHasta :: Integer -> Integer -> [Integer]
+divisoresHasta n m | m == 0 = []
+                   | mod n m == 0 = m : divisoresHasta n (m-1)
+                   | otherwise = divisoresHasta n (m-1)
